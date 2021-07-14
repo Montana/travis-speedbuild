@@ -2,6 +2,16 @@
 
 Travis CI use branching and project workflows to enhance the quality, speed and feedback loops for your software assets, these are just some of the ways you can increase the speed and quality even more-so. 
 
+## Use Travis CI cache and reduce clone depth to speed up setup time
+
+Don't forget about `fast_finish` and clone depth to speed times up, here's a quick example: 
+
+```yaml
+ matrix:
+   fast_finish: true
+   include:
+```
+
 
 ## Simple ways to speed the Travis build up 
 
@@ -137,6 +147,8 @@ matrix:
   ```
 
 ## Boolean expressions 
+
+Tests and boolean expressions can be used to include/exclude certain steps on specific builds. For example, the below code snippet doesn’t run the mix inch.report command if the Elixir version is 1.6, so these conditionals also can be important: 
 
 ```yaml
 matrix:
