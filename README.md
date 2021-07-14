@@ -196,3 +196,12 @@ jobs:
           - nvm install lts/*
           - npx semantic-release
    ```
+   
+## Incremental compilation 
+
+Incremental compiliation is the technique by which a build system can efficiently update previous build artifacts. With sufficient information about dependencies between build steps, it is possible to tell which steps are impacted by the updated sources and run only these to generate correct build artifacts.
+
+<img width="929" alt="graph" src="https://user-images.githubusercontent.com/20936398/125706444-c7ea1f71-42ed-4367-9c22-8e559b433a43.png">
+
+_Empirical distribution function of incremental build times and the potential gain they introduce
+compared to full rebuilds._
