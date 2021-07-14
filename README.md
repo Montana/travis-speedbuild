@@ -1,6 +1,6 @@
-# travis-speedbuild
+# Build time improvements.
 
-Ways to speed your build up in Travis CI.
+Travis CI use branching and project workflows to enhance the quality, speed and feedback loops for your software assets, these are just some of the ways you can increase the speed and quality even more-so. 
 
 
 ## Simple ways to speed the Travis build up 
@@ -152,3 +152,33 @@ script:
   - mix format --check-formatted'
 ```
 
+## Running semantic-releases only
+
+This example is a minimal configuration for a semantic-release with a build running Go 1.6 and 1.7. This `.traivs.yml` creates a release build stage that runs semantic-release only after all test jobs are successful. It's recommended to run the semantic-release command in the Travis deploy step so if an error occurs the build will fail and Travis will send a notification.
+
+Note: It's not recommended to run the semantic-release command in the Travis script step as each script in this step will be executed regardless of the outcome of the previous one. 
+
+A Running the tests in the script step of the release stage is not necessary as the previous stage(s) already ran them. This in turn will ncrease the speed of the build and the script step of the release stage can be overwritten.
+
+```yaml
+language: go
+
+go:
+  - 1.6
+  - 1.7
+
+jobs:
+  include:
+    # Define the release stage that runs semantic-release
+    - stage: release
+      # Advanced: optionally overwrite your default `script` step to skip the tests
+      # script:
+      #   - make (or something different)
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script:
+          # Use nvm to install and use the Node LTS version (nvm is installed on all Travis images)
+          - nvm install lts/*
+          - npx semantic-release
+   ```
