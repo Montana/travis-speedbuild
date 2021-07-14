@@ -1,4 +1,4 @@
-# Travis CI Build time improvements:
+# Travis CI Build time improvements
 
 _Note:_ For IBM specific instructions (these instructions still can apply to IBM projects, and best of practices). [The IBM Manifest Guide by Montana Mendy for IBM + Travis CI](https://github.com/Montana/manifest).
 
